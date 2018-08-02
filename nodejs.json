@@ -169,7 +169,7 @@
                     },
                     "spec": {
                         "containers": [{
-                            "name": "nodejs-example",
+                            "name": "nodejs-example-cicd",
                             "image": " ",
                             "ports": [{
                                 "containerPort": 8080
@@ -207,7 +207,7 @@
             "displayName": "Name",
             "description": "The name assigned to all of the frontend objects defined in this template.",
             "required": true,
-            "value": "nodejs-example"
+            "value": "nodejs-example-cicd"
         },
         {
             "name": "NAMESPACE",
