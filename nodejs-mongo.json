@@ -17,11 +17,10 @@
   },
   "message": "The following service(s) have been created in your project: ${NAME}, ${DATABASE_SERVICE_NAME}.\n\nFor more information about using this template, including OpenShift considerations, see https://github.com/openshift/nodejs-ex/blob/master/README.md.",
   "labels": {
-      "template": "nodejs-mongodb-example",
-      "app": "nodejs-mongodb-example"
+    "template": "nodejs-mongodb-example",
+    "app": "nodejs-mongodb-example"
   },
-  "objects": [
-    {
+  "objects": [{
       "kind": "Secret",
       "apiVersion": "v1",
       "metadata": {
@@ -30,7 +29,7 @@
       "stringData": {
         "database-user": "${DATABASE_USER}",
         "database-password": "${DATABASE_PASSWORD}",
-        "database-admin-password" : "${DATABASE_ADMIN_PASSWORD}"
+        "database-admin-password": "${DATABASE_ADMIN_PASSWORD}"
       }
     },
     {
@@ -44,13 +43,11 @@
         }
       },
       "spec": {
-        "ports": [
-          {
-            "name": "web",
-            "port": 8080,
-            "targetPort": 8080
-          }
-        ],
+        "ports": [{
+          "name": "web",
+          "port": 8080,
+          "targetPort": 8080
+        }],
         "selector": {
           "name": "${NAME}"
         }
@@ -107,12 +104,10 @@
               "namespace": "${NAMESPACE}",
               "name": "nodejs:${NODEJS_VERSION}"
             },
-            "env": [
-              {
-                "name": "NPM_MIRROR",
-                "value": "${NPM_MIRROR}"
-              }
-            ]
+            "env": [{
+              "name": "NPM_MIRROR",
+              "value": "${NPM_MIRROR}"
+            }]
           }
         },
         "output": {
@@ -121,8 +116,7 @@
             "name": "${NAME}:latest"
           }
         },
-        "triggers": [
-          {
+        "triggers": [{
             "type": "ImageChange"
           },
           {
@@ -160,8 +154,7 @@
         "strategy": {
           "type": "Recreate"
         },
-        "triggers": [
-          {
+        "triggers": [{
             "type": "ImageChange",
             "imageChangeParams": {
               "automatic": true,
@@ -190,75 +183,70 @@
             }
           },
           "spec": {
-            "containers": [
-              {
-                "name": "nodejs-mongodb-example",
-                "image": " ",
-                "ports": [
-                  {
-                    "containerPort": 8080
-                  }
-                ],
-                "env": [
-                  {
-                    "name": "DATABASE_SERVICE_NAME",
-                    "value": "${DATABASE_SERVICE_NAME}"
-                  },
-                  {
-                    "name": "MONGODB_USER",
-                    "valueFrom": {
-                      "secretKeyRef" : {
-                        "name" : "${NAME}",
-                        "key" : "database-user"
-                      }
+            "containers": [{
+              "name": "nodejs-mongodb-example",
+              "image": " ",
+              "ports": [{
+                "containerPort": 8080
+              }],
+              "env": [{
+                  "name": "DATABASE_SERVICE_NAME",
+                  "value": "${DATABASE_SERVICE_NAME}"
+                },
+                {
+                  "name": "MONGODB_USER",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "name": "${NAME}",
+                      "key": "database-user"
                     }
-                  },
-                  {
-                    "name": "MONGODB_PASSWORD",
-                    "valueFrom": {
-                      "secretKeyRef" : {
-                        "name" : "${NAME}",
-                        "key" : "database-password"
-                      }
-                    }
-                  },
-                  {
-                    "name": "MONGODB_DATABASE",
-                    "value": "${DATABASE_NAME}"
-                  },
-                  {
-                    "name": "MONGODB_ADMIN_PASSWORD",
-                    "valueFrom": {
-                      "secretKeyRef" : {
-                        "name" : "${NAME}",
-                        "key" : "database-admin-password"
-                      }
-                    }
-                  }
-                ],
-                "readinessProbe": {
-                  "timeoutSeconds": 3,
-                  "initialDelaySeconds": 3,
-                  "httpGet": {
-                    "path": "/",
-                    "port": 8080
                   }
                 },
-                "livenessProbe": {
-                  "timeoutSeconds": 3,
-                  "initialDelaySeconds": 30,
-                  "httpGet": {
-                    "path": "/",
-                    "port": 8080
+                {
+                  "name": "MONGODB_PASSWORD",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "name": "${NAME}",
+                      "key": "database-password"
+                    }
                   }
                 },
-                "resources": {
-                  "limits": {
-                    "memory": "${MEMORY_LIMIT}"
+                {
+                  "name": "MONGODB_DATABASE",
+                  "value": "${DATABASE_NAME}"
+                },
+                {
+                  "name": "MONGODB_ADMIN_PASSWORD",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "name": "${NAME}",
+                      "key": "database-admin-password"
+                    }
                   }
                 }
+              ],
+              "readinessProbe": {
+                "timeoutSeconds": 3,
+                "initialDelaySeconds": 3,
+                "httpGet": {
+                  "path": "/",
+                  "port": 8080
+                }
+              },
+              "livenessProbe": {
+                "timeoutSeconds": 3,
+                "initialDelaySeconds": 30,
+                "httpGet": {
+                  "path": "/",
+                  "port": 8080
+                }
+              },
+              "resources": {
+                "limits": {
+                  "memory": "${MEMORY_LIMIT}"
+                }
               }
-            ]
+            }]
           }
         }
       }
@@ -273,13 +261,11 @@
         }
       },
       "spec": {
-        "ports": [
-          {
-            "name": "mongodb",
-            "port": 27017,
-            "targetPort": 27017
-          }
-        ],
+        "ports": [{
+          "name": "mongodb",
+          "port": 27017,
+          "targetPort": 27017
+        }],
         "selector": {
           "name": "${DATABASE_SERVICE_NAME}"
         }
@@ -299,8 +285,7 @@
         "strategy": {
           "type": "Recreate"
         },
-        "triggers": [
-          {
+        "triggers": [{
             "type": "ImageChange",
             "imageChangeParams": {
               "automatic": true,
@@ -330,95 +315,85 @@
             }
           },
           "spec": {
-            "containers": [
-              {
-                "name": "mongodb",
-                "image": " ",
-                "ports": [
-                  {
-                    "containerPort": 27017
-                  }
-                ],
-                "env": [
-                  {
-                    "name": "MONGODB_USER",
-                    "valueFrom": {
-                      "secretKeyRef" : {
-                        "name" : "${NAME}",
-                        "key" : "database-user"
-                      }
-                    }
-                  },
-                  {
-                    "name": "MONGODB_PASSWORD",
-                    "valueFrom": {
-                      "secretKeyRef" : {
-                        "name" : "${NAME}",
-                        "key" : "database-password"
-                      }
-                    }
-                  },
-                  {
-                    "name": "MONGODB_DATABASE",
-                    "value": "${DATABASE_NAME}"
-                  },
-                  {
-                    "name": "MONGODB_ADMIN_PASSWORD",
-                    "valueFrom": {
-                      "secretKeyRef" : {
-                        "name" : "${NAME}",
-                        "key" : "database-admin-password"
-                      }
+            "containers": [{
+              "name": "mongodb",
+              "image": " ",
+              "ports": [{
+                "containerPort": 27017
+              }],
+              "env": [{
+                  "name": "MONGODB_USER",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "name": "${NAME}",
+                      "key": "database-user"
                     }
                   }
-                ],
-                "readinessProbe": {
-                  "timeoutSeconds": 1,
-                  "initialDelaySeconds": 3,
-                  "exec": {
-                    "command": [
-                      "/bin/sh",
-                      "-i",
-                      "-c",
-                      "mongo 127.0.0.1:27017/$MONGODB_DATABASE -u $MONGODB_USER -p $MONGODB_PASSWORD --eval=\"quit()\""
-                    ]
+                },
+                {
+                  "name": "MONGODB_PASSWORD",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "name": "${NAME}",
+                      "key": "database-password"
+                    }
                   }
                 },
-                "livenessProbe": {
-                  "timeoutSeconds": 1,
-                  "initialDelaySeconds": 30,
-                  "tcpSocket": {
-                    "port": 27017
-                  }
+                {
+                  "name": "MONGODB_DATABASE",
+                  "value": "${DATABASE_NAME}"
                 },
-                "resources": {
-                  "limits": {
-                    "memory": "${MEMORY_MONGODB_LIMIT}"
+                {
+                  "name": "MONGODB_ADMIN_PASSWORD",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "name": "${NAME}",
+                      "key": "database-admin-password"
+                    }
                   }
-                },
-                "volumeMounts": [
-                  {
-                    "name": "${DATABASE_SERVICE_NAME}-data",
-                    "mountPath": "/var/lib/mongodb/data"
-                  }
-                ]
-              }
-            ],
-            "volumes": [
-              {
-                "name": "${DATABASE_SERVICE_NAME}-data",
-                "emptyDir": {
-                  "medium": ""
                 }
+              ],
+              "readinessProbe": {
+                "timeoutSeconds": 1,
+                "initialDelaySeconds": 3,
+                "exec": {
+                  "command": [
+                    "/bin/sh",
+                    "-i",
+                    "-c",
+                    "mongo 127.0.0.1:27017/$MONGODB_DATABASE -u $MONGODB_USER -p $MONGODB_PASSWORD --eval=\"quit()\""
+                  ]
+                }
+              },
+              "livenessProbe": {
+                "timeoutSeconds": 1,
+                "initialDelaySeconds": 30,
+                "tcpSocket": {
+                  "port": 27017
+                }
+              },
+              "resources": {
+                "limits": {
+                  "memory": "${MEMORY_MONGODB_LIMIT}"
+                }
+              },
+              "volumeMounts": [{
+                "name": "${DATABASE_SERVICE_NAME}-data",
+                "mountPath": "/var/lib/mongodb/data"
+              }]
+            }],
+            "volumes": [{
+              "name": "${DATABASE_SERVICE_NAME}-data",
+              "emptyDir": {
+                "medium": ""
               }
-            ]
+            }]
           }
         }
       }
     }
   ],
-  "parameters": [
-    {
+  "parameters": [{
       "name": "NAME",
       "displayName": "Name",
       "description": "The name assigned to all of the frontend objects defined in this template.",
@@ -465,7 +440,7 @@
       "displayName": "Git Repository URL",
       "description": "The URL of the repository with your application source code.",
       "required": true,
-      "value": "https://github.com/openshift/nodejs-ex.git"
+      "value": "https://github.com/judyobrienie/sample-react-app-project"
     },
     {
       "name": "SOURCE_REPOSITORY_REF",
