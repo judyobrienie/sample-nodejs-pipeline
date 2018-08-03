@@ -1,7 +1,7 @@
  // path of the template to use
         def templatePath = 'https://raw.githubusercontent.com/judyobrienie/sample-nodejs-pipeline/master/nodejs.json'
         // name of the template that will be created
-        def templateName = 'nodejs-mongodb-example'
+        def templateName = 'nodejs-cicd'
         // NOTE, the "pipeline" directive/closure from the declarative pipeline syntax needs to include, or be nested outside,
         // and "openshift" directive/closure from the OpenShift Client Plugin for Jenkins.  Otherwise, the declarative pipeline engine
         // will not be fully engaged.

@@ -2,9 +2,9 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "nodejs-example-judy",
+        "name": "nodejs-cicd",
         "annotations": {
-            "openshift.io/display-name": "Node.js",
+            "openshift.io/display-name": "Node.js-CI/CD",
             "description": "An example Node.js application with no database. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/nodejs-ex/blob/master/README.md.",
             "tags": "quickstart,nodejs",
             "iconClass": "icon-nodejs",
@@ -15,8 +15,8 @@
     },
     "message": "The following service(s) have been created in your project: ${NAME}.\n\nFor more information about using this template, including OpenShift considerations, see https://github.com/sclorg/nodejs-ex/blob/master/README.md.",
     "labels": {
-        "template": "nodejs-judy",
-        "app": "nodejs-judy"
+        "template": "nodejs-cicd",
+        "app": "nodejs-cicd"
     },
     "objects": [{
             "kind": "Service",
@@ -169,7 +169,7 @@
                     },
                     "spec": {
                         "containers": [{
-                            "name": "nodejs-example-cicd",
+                            "name": "nodejs-cicd",
                             "image": " ",
                             "ports": [{
                                 "containerPort": 8080
@@ -207,7 +207,7 @@
             "displayName": "Name",
             "description": "The name assigned to all of the frontend objects defined in this template.",
             "required": true,
-            "value": "nodejs-example-cicd"
+            "value": "nodejs-cicd"
         },
         {
             "name": "NAMESPACE",
