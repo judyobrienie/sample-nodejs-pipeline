@@ -4,19 +4,19 @@
     "metadata": {
         "name": "nodejs-cicd",
         "annotations": {
-            "openshift.io/display-name": "Node.js-CI/CD",
+            "openshift.io/display-name": "Node.js-cicd",
             "description": "An example Node.js application with no database. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/nodejs-ex/blob/master/README.md.",
             "tags": "quickstart,nodejs",
-            "iconClass": "icon-nodejs",
+            "iconClass": "icon-load-balancer",
             "openshift.io/long-description": "This template defines resources needed to develop a NodeJS application, including a build configuration and application deployment configuration.  It does not include a database.",
-            "openshift.io/provider-display-name": "Judy OBrien, Inc.",
+            "openshift.io/provider-display-name": "Judy OBrien",
             "template.openshift.io/bindable": "false"
         }
     },
     "message": "The following service(s) have been created in your project: ${NAME}.\n\nFor more information about using this template, including OpenShift considerations, see https://github.com/sclorg/nodejs-ex/blob/master/README.md.",
     "labels": {
-        "template": "nodejs-cicd",
-        "app": "nodejs-cicd"
+        "template": "nodejs-example",
+        "app": "nodejs-example"
     },
     "objects": [{
             "kind": "Service",
@@ -169,7 +169,7 @@
                     },
                     "spec": {
                         "containers": [{
-                            "name": "nodejs-cicd",
+                            "name": "nodejs-example",
                             "image": " ",
                             "ports": [{
                                 "containerPort": 8080
@@ -207,7 +207,7 @@
             "displayName": "Name",
             "description": "The name assigned to all of the frontend objects defined in this template.",
             "required": true,
-            "value": "nodejs-cicd"
+            "value": "nodejs-example"
         },
         {
             "name": "NAMESPACE",
@@ -235,7 +235,7 @@
             "displayName": "Git Repository URL",
             "description": "The URL of the repository with your application source code.",
             "required": true,
-            "value": "https://github.com/judyobrienie/sample-nodejs-react-minishift"
+            "value": "https://github.com/sclorg/nodejs-ex.git"
         },
         {
             "name": "SOURCE_REPOSITORY_REF",
