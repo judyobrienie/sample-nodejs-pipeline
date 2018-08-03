@@ -16,7 +16,7 @@
     "message": "The following service(s) have been created in your project: ${NAME}.\n\nFor more information about using this template, including OpenShift considerations, see https://github.com/sclorg/nodejs-ex/blob/master/README.md.",
     "labels": {
         "template": "nodejs-cicd",
-        "app": "nodejs-cide"
+        "app": "nodejs-cicd"
     },
     "objects": [{
             "kind": "Service",
@@ -144,7 +144,7 @@
                         "imageChangeParams": {
                             "automatic": true,
                             "containerNames": [
-                                "nodejs-example"
+                                "nodejs-cicd"
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
@@ -169,7 +169,7 @@
                     },
                     "spec": {
                         "containers": [{
-                            "name": "nodejs-example",
+                            "name": "nodejs-cicd",
                             "image": " ",
                             "ports": [{
                                 "containerPort": 8080
@@ -207,7 +207,7 @@
             "displayName": "Name",
             "description": "The name assigned to all of the frontend objects defined in this template.",
             "required": true,
-            "value": "nodejs-example"
+            "value": "nodejs-cicd"
         },
         {
             "name": "NAMESPACE",
